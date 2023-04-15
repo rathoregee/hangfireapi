@@ -5,12 +5,14 @@ using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
-//    .ConfigureContainer<ContainerBuilder>(builder =>
-//    {
-//        //register with autofac 
-//        builder.RegisterModule(new AutofacModule());
-//    });
+// Call UseServiceProviderFactory on the Host sub property 
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterModule<AutofacModule>();
+});
+
 
 //Hangfire
 string conStr = @"Data Source=DESKTOP-TMRH8RM;Initial Catalog=g2vjobs;Integrated Security=true;Pooling=False";
@@ -46,7 +48,7 @@ app.UseHangfireDashboard("/g2vjobs");
 BackgroundJob.Enqueue(() => Console.WriteLine("You have done your payment suceessfully!"));
 RecurringJob.AddOrUpdate(
     "myrecurringjob",
-    () => Console.WriteLine("Recurring!"),
+    () => Console.WriteLine("Recurring! :: "+ DateTime.UtcNow.Ticks.ToString()),
     Cron.Minutely);
 
 app.Run();
