@@ -8,11 +8,14 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
+g2v.core.clinetsync.api/bin/*.*
+g2v.core.clinetsync.api/obj/*.*
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 .vscode/
+*.dll
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
