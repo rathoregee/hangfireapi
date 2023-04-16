@@ -2,21 +2,35 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using g2v.core.clinetsync.api;
 using Hangfire;
+using Serilog;
+using AutofacSerilogIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = new ConfigurationBuilder()
+                      .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                      .AddEnvironmentVariables()
+                      .AddCommandLine(args)
+                      .Build();
+var logger = new LoggerConfiguration()
+                         .ReadFrom.Configuration(configuration)
+                         .WriteTo.Console()
+                         .Enrich.WithCorrelationId()
+                         .CreateLogger();
 
 // Call UseServiceProviderFactory on the Host sub property 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
-    containerBuilder.RegisterModule<AutofacModule>();
+    containerBuilder.RegisterLogger(logger);
+    containerBuilder.RegisterInstance(configuration).As<IConfiguration>();
+    containerBuilder.RegisterModule<AutofacModule>();    
 });
 
 
 //Hangfire
 string conStr = @"Data Source=DESKTOP-TMRH8RM;Initial Catalog=g2vjobs;Integrated Security=true;Pooling=False";
-Comman.GetHangfireConnectionString(conStr);
+Comman.GetHangfireConnectionString(logger, conStr);
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(conStr));
 builder.Services.AddHangfireServer();
 

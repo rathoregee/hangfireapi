@@ -52,3 +52,15 @@ C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\obj\Debug\net6.0\ref\g2v.core.clinetsync.api.dll
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\obj\Debug\net6.0\g2v.core.clinetsync.api.pdb
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\obj\Debug\net6.0\g2v.core.clinetsync.api.genruntimeconfig.cache
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.AspNetCore.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Enrichers.CorrelationId.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Extensions.Hosting.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Extensions.Logging.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Formatting.Compact.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Settings.Configuration.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Sinks.File.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\AutofacSerilogIntegration.dll
