@@ -11,6 +11,7 @@ var configuration = new ConfigurationBuilder()
                       .AddEnvironmentVariables()
                       .AddCommandLine(args)
                       .Build();
+
 var logger = new LoggerConfiguration()
                          .ReadFrom.Configuration(configuration)
                          .WriteTo.Console()

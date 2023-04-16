@@ -26,7 +26,7 @@ namespace g2v.core.clinetsync.api
             }
             catch (Exception ex)
             {
-                logger.Error("database connected",ex);
+                logger.Error("database connection failed",ex);
             }
 
         }       
