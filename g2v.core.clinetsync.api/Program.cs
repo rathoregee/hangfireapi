@@ -3,6 +3,9 @@ using Autofac.Extensions.DependencyInjection;
 using g2v.core.clinetsync.api;
 using Hangfire;
 using AutofacSerilogIntegration;
+using Hangfire.Dashboard;
+using Hangfire.AspNetCore;
+using Hangfire.Dashboard.BasicAuthorization;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = Comman.GetConfiguration(args);
@@ -16,7 +19,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterLogger(logger);
     containerBuilder.RegisterInstance(configuration).As<IConfiguration>();
-    containerBuilder.RegisterModule<AutofacModule>();    
+    containerBuilder.RegisterModule<AutofacModule>();
 });
 
 
@@ -48,13 +51,39 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    Authorization = new[] { new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationFilter(new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationFilterOptions
+    {
+         RequireSsl = false,
+         SslRedirect = false,
+         LoginCaseSensitive = true,
+          Users = new [] {
+                new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationUser {
+                    Login = "123",
+                    PasswordClear = "000"
+                   
+                }
+            }
+
+    }) }
+});
+
 // Map to the `/g2vjobs` URL
-app.UseHangfireDashboard(configuration["HANGFIREURL"]);
+//app.UseHangfireDashboard(configuration["HANGFIREURL"], new DashboardOptions()
+//{
+
+//});
+
+//app.UseHangfireDashboard(configuration["HANGFIREURL"], new DashboardOptions()
+//{
+//    Authorization = new[] { new HangfireAuthorizationFilter() }
+//});
 
 BackgroundJob.Enqueue(() => Console.WriteLine("You have done your payment suceessfully!"));
 RecurringJob.AddOrUpdate(
     "myrecurringjob",
-    () => Console.WriteLine("Recurring! :: "+ DateTime.UtcNow.Ticks.ToString()),
+    () => Console.WriteLine("Recurring! :: " + DateTime.UtcNow.Ticks.ToString()),
     Cron.Minutely);
 
 app.Run();

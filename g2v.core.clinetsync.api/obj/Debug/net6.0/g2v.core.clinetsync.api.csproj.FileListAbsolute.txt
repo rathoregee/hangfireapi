@@ -63,3 +63,7 @@ C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Sinks.Debug.dll
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Serilog.Sinks.File.dll
 C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\AutofacSerilogIntegration.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\obj\Debug\net6.0\g2v.core.clinetsync.api.csproj.AssemblyReference.cache
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Hangfire.Dashboard.Authorization.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Hangfire.Dashboard.BasicAuthorization.dll
+C:\Users\ratho\OneDrive\Desktop\G2V\Github\repos\hangfireapi\g2v.core.clinetsync.api\bin\Debug\net6.0\Owin.dll
