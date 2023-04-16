@@ -67,10 +67,6 @@
               "target": "Package",
               "version": "[1.7.34, )"
             },
-            "Hangfire.Dashboard.Authorization": {
-              "target": "Package",
-              "version": "[3.0.1, )"
-            },
             "Hangfire.Dashboard.BasicAuthorization": {
               "target": "Package",
               "version": "[1.0.2, )"

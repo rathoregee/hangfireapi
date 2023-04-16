@@ -51,34 +51,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseHangfireDashboard("/hangfire", new DashboardOptions
-{
-    Authorization = new[] { new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationFilter(new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationFilterOptions
-    {
-         RequireSsl = false,
-         SslRedirect = false,
-         LoginCaseSensitive = true,
-          Users = new [] {
-                new Hangfire.Dashboard.BasicAuthorization.BasicAuthAuthorizationUser {
-                    Login = "123",
-                    PasswordClear = "000"
-                   
-                }
-            }
-
-    }) }
-});
-
 // Map to the `/g2vjobs` URL
-//app.UseHangfireDashboard(configuration["HANGFIREURL"], new DashboardOptions()
-//{
-
-//});
-
-//app.UseHangfireDashboard(configuration["HANGFIREURL"], new DashboardOptions()
-//{
-//    Authorization = new[] { new HangfireAuthorizationFilter() }
-//});
+app.UseHangfireDashboard(configuration["HANGFIREURL"], new DashboardOptions
+{
+    Authorization = Comman.GetBasicAuthentication()
+});
 
 BackgroundJob.Enqueue(() => Console.WriteLine("You have done your payment suceessfully!"));
 RecurringJob.AddOrUpdate(
