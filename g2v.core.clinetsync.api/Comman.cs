@@ -26,7 +26,7 @@ namespace g2v.core.clinetsync.api
             }
         }
 
-        public static Logger Create( IConfigurationRoot configuration)
+        public static Logger Create(IConfigurationRoot configuration)
         {
             return new LoggerConfiguration()
                          .ReadFrom.Configuration(configuration)
@@ -46,11 +46,11 @@ namespace g2v.core.clinetsync.api
                       .AddCommandLine(args)
                       .Build();
         }
-        public static void GetHangfireConnectionString(Logger logger, string conStr)
+        public static void CreateHangfireDatabase(IConfigurationRoot configuration, Logger logger, string conStr)
         {
             try
-            {
-                string dbName = "g2vjobs";
+            {               
+                string dbName = configuration["G2VDBNAME"];
                 conStr = conStr.Replace(dbName, "master");
 
                 using var con = new SqlConnection(conStr);

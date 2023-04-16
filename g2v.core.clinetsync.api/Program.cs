@@ -2,12 +2,12 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using g2v.core.clinetsync.api;
 using Hangfire;
-using Serilog;
 using AutofacSerilogIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = Comman.GetConfiguration(args);
 
-var logger = SeilogLoggerFactory.Create(Comman.GetConfiguration(args));
+var logger = SeilogLoggerFactory.Create(configuration);
 
 // Call UseServiceProviderFactory on the Host sub property 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -15,14 +15,14 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterLogger(logger);
-    containerBuilder.RegisterInstance(Comman.GetConfiguration(args)).As<IConfiguration>();
+    containerBuilder.RegisterInstance(configuration).As<IConfiguration>();
     containerBuilder.RegisterModule<AutofacModule>();    
 });
 
 
 //Hangfire
-string conStr = @"Data Source=DESKTOP-TMRH8RM;Initial Catalog=g2vjobs;Integrated Security=true;Pooling=False";
-Comman.GetHangfireConnectionString(logger, conStr);
+string conStr = configuration.GetConnectionString("ConnectionString");
+Comman.CreateHangfireDatabase(configuration, logger, conStr);
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(conStr));
 builder.Services.AddHangfireServer();
 
@@ -49,7 +49,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Map to the `/g2vjobs` URL
-app.UseHangfireDashboard("/g2vjobs");
+app.UseHangfireDashboard(configuration["HANGFIREURL"]);
 
 BackgroundJob.Enqueue(() => Console.WriteLine("You have done your payment suceessfully!"));
 RecurringJob.AddOrUpdate(
