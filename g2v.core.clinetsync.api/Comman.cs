@@ -83,8 +83,8 @@ namespace g2v.core.clinetsync.api
                 LoginCaseSensitive = true,
                 Users = new [] { 
                     new BasicAuthAuthorizationUser { 
-                        Login = "123",
-                        PasswordClear = "000"
+                        Login = "g2v",
+                        PasswordClear = "g2v"
                     }
                 }
             })
