@@ -6,17 +6,8 @@ using Serilog;
 using AutofacSerilogIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = new ConfigurationBuilder()
-                      .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                      .AddEnvironmentVariables()
-                      .AddCommandLine(args)
-                      .Build();
 
-var logger = new LoggerConfiguration()
-                         .ReadFrom.Configuration(configuration)
-                         .WriteTo.Console()
-                         .Enrich.WithCorrelationId()
-                         .CreateLogger();
+var logger = SeilogLoggerFactory.Create(Comman.GetConfiguration(args));
 
 // Call UseServiceProviderFactory on the Host sub property 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -24,7 +15,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterLogger(logger);
-    containerBuilder.RegisterInstance(configuration).As<IConfiguration>();
+    containerBuilder.RegisterInstance(Comman.GetConfiguration(args)).As<IConfiguration>();
     containerBuilder.RegisterModule<AutofacModule>();    
 });
 

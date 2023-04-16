@@ -1,11 +1,52 @@
 ﻿using g2v.core.clinetsync.api.Controllers;
+using Serilog;
+using Serilog.Core;
 using System.Data.SqlClient;
 
 namespace g2v.core.clinetsync.api
 {
+    public class SeilogLoggerFactory
+    {
+        private static SeilogLoggerFactory? instance = null;
+
+        private SeilogLoggerFactory()
+        {
+        }
+
+        public static SeilogLoggerFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SeilogLoggerFactory();
+                }
+
+                return instance;
+            }
+        }
+
+        public static Logger Create( IConfigurationRoot configuration)
+        {
+            return new LoggerConfiguration()
+                         .ReadFrom.Configuration(configuration)
+                         .WriteTo.Console()
+                         .Enrich.WithCorrelationId()
+                         .CreateLogger();
+        }
+    }
+  
     public static class Comman
     {
-        public static void GetHangfireConnectionString(Serilog.Core.Logger logger, string conStr)
+        public static IConfigurationRoot GetConfiguration(string [] args)
+        {
+            return new ConfigurationBuilder()
+                      .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                      .AddEnvironmentVariables()
+                      .AddCommandLine(args)
+                      .Build();
+        }
+        public static void GetHangfireConnectionString(Logger logger, string conStr)
         {
             try
             {
