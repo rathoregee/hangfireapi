@@ -16,7 +16,12 @@ g2v.core.clinetsync.api/obj/*.*
 *.sln.docstates
 .vscode/
 *.dll
-
+/**/bin/**/*
+/./**/bin/**/*
+./**/bin/**/*
+**/bin/**/*
+*/bin/**/*
+bin/**/*
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
