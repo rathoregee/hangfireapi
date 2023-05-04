@@ -1,0 +1,2 @@
+2023-04-25 14:10:27.297 +05:00 [ERR] database connection failed
+2023-04-25 14:12:10.168 +05:00 [INF] database connected
