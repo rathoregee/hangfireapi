@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace g2v.core.clinetsync.common.Classes.Results
 {
-    internal class NullPayload
+    public class NullPayload
     {
     }
 }
