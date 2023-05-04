@@ -24,7 +24,7 @@ namespace g2v.core.clinetsync.migrations.Migrations
             //var user = _configuration["PGUSER"];
 
             //var connectionString = $"Server={host};port={port};user id={user};password={password};database={database};pooling=true";
-            var connectionString = $"Data Source=DESKTOP-TMRH8RM;Initial Catalog=g2vjobs;Integrated Security=true;Pooling=False";
+            var connectionString = $"Data Source=DESKTOP-TMRH8RM;Initial Catalog=g2vjobs;Integrated Security=true;Pooling=False;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true;";
 
 
             //optionsBuilder.UseNpgsql(connectionString);
