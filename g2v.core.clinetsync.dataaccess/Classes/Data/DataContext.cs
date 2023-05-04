@@ -25,11 +25,9 @@ namespace g2v.core.clinetsync.dataaccess.Classes.Data
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            
+        {            
 
-            modelBuilder.Entity<Application>();
-         
+            modelBuilder.Entity<Application>();         
 
             base.OnModelCreating(modelBuilder);
         }

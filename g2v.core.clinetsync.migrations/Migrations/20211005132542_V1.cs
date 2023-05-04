@@ -17,13 +17,11 @@ namespace g2v.core.clinetsync.migrations.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Application", x => x.Id);
-                });           
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            
-
             migrationBuilder.DropTable(
                 name: "Application");
         }
