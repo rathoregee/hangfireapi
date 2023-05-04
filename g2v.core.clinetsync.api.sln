@@ -5,7 +5,11 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.api", "g2v.core.clinetsync.api\g2v.core.clinetsync.api.csproj", "{84B314D6-0CF9-4ACF-BDCE-E5055780DF3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.common", "g2v.core.clinetsync.common\g2v.core.clinetsync.common.csproj", "{D007CADB-50A2-4568-81AB-385455499681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.common", "g2v.core.clinetsync.common\g2v.core.clinetsync.common.csproj", "{D007CADB-50A2-4568-81AB-385455499681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.dataaccess", "g2v.core.clinetsync.dataaccess\g2v.core.clinetsync.dataaccess.csproj", "{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.migrations", "g2v.core.clinetsync.migrations\g2v.core.clinetsync.migrations.csproj", "{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D007CADB-50A2-4568-81AB-385455499681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D007CADB-50A2-4568-81AB-385455499681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D007CADB-50A2-4568-81AB-385455499681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

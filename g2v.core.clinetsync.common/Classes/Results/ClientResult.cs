@@ -9,7 +9,7 @@ namespace g2v.core.clinetsync.common.Classes.Results
 {
     public static class ClientResult
     {
-        private class ClientResultInternal<out T> : IClientResult<T>
+        private class ClientResultInternal<T> : IClientResult<T>
         {
             public string Status { get; }
             public string[] Errors { get; }
