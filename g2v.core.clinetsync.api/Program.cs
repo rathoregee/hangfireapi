@@ -6,6 +6,7 @@ using AutofacSerilogIntegration;
 using Hangfire.Dashboard;
 using Hangfire.AspNetCore;
 using Hangfire.Dashboard.BasicAuthorization;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = Comman.GetConfiguration(args);
@@ -25,9 +26,24 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 //Hangfire
 string conStr = configuration.GetConnectionString("ConnectionString");
+
 Comman.CreateHangfireDatabase(configuration, logger, conStr);
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(conStr));
 builder.Services.AddHangfireServer();
+// Signal R Core
+builder.Services.AddSignalR();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+                      policy =>
+                      {
+                          policy
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader(); 
+                      });
+});
 
 // Add services to the container.
 
@@ -62,5 +78,7 @@ RecurringJob.AddOrUpdate(
     "myrecurringjob",
     () => Console.WriteLine("Recurring! :: " + DateTime.UtcNow.Ticks.ToString()),
     Cron.Minutely);
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
