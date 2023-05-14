@@ -30,20 +30,23 @@ string conStr = configuration.GetConnectionString("ConnectionString");
 Comman.CreateHangfireDatabase(configuration, logger, conStr);
 builder.Services.AddHangfire(x => x.UseSqlServerStorage(conStr));
 builder.Services.AddHangfireServer();
-// Signal R Core
-builder.Services.AddSignalR();
+
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-                      policy =>
-                      {
-                          policy
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader(); 
-                      });
+    options.AddPolicy("MyPolicy",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+            //.AllowCredentials();
+            //.WithOrigins("https://localhost:44306", "http://localhost:44306", "https://localhost:3000", "https://localhost:44306");
+        });
 });
+
+// Signal R Core
+builder.Services.AddSignalR();
 
 // Add services to the container.
 
@@ -79,6 +82,16 @@ RecurringJob.AddOrUpdate(
     () => Console.WriteLine("Recurring! :: " + DateTime.UtcNow.Ticks.ToString()),
     Cron.Minutely);
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+    context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "*" });
+    context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
+    await next();
+});
+
+// UseCors must be called before MapHub.
+app.UseCors("MyPolicy");
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

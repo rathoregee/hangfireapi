@@ -17,6 +17,7 @@ namespace WindowsFormsSample
         private void ChatForm_Load(object sender, EventArgs e)
         {
             addressTextBox.Focus();
+            addressTextBox.Text = "https://localhost:44306/chatHub";
         }
 
         private void addressTextBox_Enter(object sender, EventArgs e)

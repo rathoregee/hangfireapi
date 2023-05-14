@@ -21,7 +21,7 @@ namespace g2v.core.clinetsync.api.Controllers
         {
             _jobClient.Enqueue(() => Console.WriteLine("Health check job"));
             _logger.LogInformation("Health check endpoint is working");
-            return Ok("Health check endpoint is working");
+            return Ok("1");
         }
     }
 }
