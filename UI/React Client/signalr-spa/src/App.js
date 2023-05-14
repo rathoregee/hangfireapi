@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from "react";
-
+import Chat from './Chat/Chat';
 function App() {
   const [data, setData] = useState('no data');
   useEffect(() => {
@@ -30,6 +30,9 @@ function App() {
 
         <h1>I've rendered {data} times!</h1>
       </header>
+      <div style={{ margin: '0 30%' }}>
+        <Chat />
+      </div>
     </div>
   );
 }

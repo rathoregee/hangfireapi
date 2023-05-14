@@ -7,6 +7,7 @@ using Hangfire.Dashboard;
 using Hangfire.AspNetCore;
 using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Autofac.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = Comman.GetConfiguration(args);
@@ -32,21 +33,34 @@ builder.Services.AddHangfire(x => x.UseSqlServerStorage(conStr));
 builder.Services.AddHangfireServer();
 
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("MyPolicy",
-        policy =>
-        {
-            policy.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-            //.AllowCredentials();
-            //.WithOrigins("https://localhost:44306", "http://localhost:44306", "https://localhost:3000", "https://localhost:44306");
-        });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("MyPolicy",
+//        policy =>
+//        {
+//            policy.AllowAnyOrigin()
+//            .AllowAnyMethod()
+//            .AllowAnyHeader();
+//            //.AllowCredentials();
+//            //.WithOrigins("https://localhost:44306", "http://localhost:44306", "https://localhost:3000", "https://localhost:44306");
+//        });
+//});
+
 
 // Signal R Core
 builder.Services.AddSignalR();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ClientPermission", policy =>
+    {
+        policy.AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins("http://localhost:3000")
+            .AllowCredentials();
+    });
+});
 
 // Add services to the container.
 
@@ -91,7 +105,7 @@ app.Use(async (context, next) =>
 });
 
 // UseCors must be called before MapHub.
-app.UseCors("MyPolicy");
+app.UseCors("ClientPermission");
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
