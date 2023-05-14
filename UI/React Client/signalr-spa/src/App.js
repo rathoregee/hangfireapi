@@ -27,12 +27,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
-        <h1>I've rendered {data} times!</h1>
-      </header>
-      <div style={{ margin: '0 30%' }}>
-        <Chat />
-      </div>
+        <h1>API Cors Test status : {data}</h1>
+        <div style={{ margin: '0 30%' }}>
+          <Chat />
+        </div>
+      </header>    
     </div>
   );
 }

@@ -21,9 +21,9 @@ const Chat = () => {
                 console.log('Connected!');
                 connection.invoke('sendmessage', "kamran","billo");
                 connection.on('ReceiveMessage', message => {
+                    console.log(message)
                     const updatedChat = [...latestChat.current];
-                    updatedChat.push(message);
-                
+                    updatedChat.push(message);                
                     setChat(updatedChat);
                 });
             })
@@ -52,8 +52,8 @@ const Chat = () => {
 
     return (
         <div>
-            <ChatInput sendMessage={sendMessage} />
-            <hr />
+            {/* <ChatInput sendMessage={sendMessage} />
+            <hr /> */}
             <ChatWindow chat={chat}/>
         </div>
     );
