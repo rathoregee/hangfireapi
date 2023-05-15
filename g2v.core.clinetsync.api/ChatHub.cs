@@ -39,7 +39,20 @@ namespace g2v.core.clinetsync.api
 
         public void GetCurrentUserNotifications()
         {
-            _context.Clients.All.SendAsync("ReceiveMessage", DateTime.Now.Ticks, DateTime.Now.Ticks);
+            int[] arr = getArray();
+            _context.Clients.All.SendAsync("ReceiveMessage", arr);
+        }
+
+        private static int[] getArray()
+        {
+            int Min = 0;
+            int Max = 20;
+            Random randNum = new Random();
+            int[] arr = Enumerable
+                .Repeat(0, 5)
+                .Select(i => randNum.Next(Min, Max))
+                .ToArray();
+            return arr;
         }
     }
 }

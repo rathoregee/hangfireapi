@@ -8,15 +8,7 @@ import DemoChart from './DemoChart';
 const Chat = () => {
     const [ chat, setChat ] = useState([]);
     const latestChat = useRef(null);
-    const options = {
-        title: {
-          text: 'spectral irradiance'
-        },
-        series: [{
-          data: [1, 2, 3]
-        }]
-      }
-      
+
     latestChat.current = chat;
 
     useEffect(() => {
@@ -31,9 +23,17 @@ const Chat = () => {
                 connection.invoke('sendmessage', "kamran","billo");
                 connection.on('ReceiveMessage', message => {
                     console.log(message)
-                    const updatedChat = [...latestChat.current];
-                    updatedChat.push(message);                
-                    setChat(updatedChat);
+                    // const updatedChat = [...latestChat.current];
+                    // updatedChat.push(message);
+                    const options = {
+                        title: {
+                          text: 'spectral irradiance'
+                        },
+                        series: [{
+                          data: message
+                        }]
+                      }
+                    setChat(options);
                 });
             })
             .catch(e => console.log('Connection failed: ', e));
@@ -64,7 +64,7 @@ const Chat = () => {
             {/* <ChatInput sendMessage={sendMessage} />
             <hr /> */}
             {/* <ChatWindow chat={chat}/> */}
-            <DemoChart options = {options}/>
+            <DemoChart options = {chat}/>
         </div>
     );
 };
