@@ -26,7 +26,9 @@ namespace g2v.core.clinetsync.api
             timer = new System.Threading.Timer(DoWork, null, TimeSpan.FromSeconds(3),
                  TimeSpan.FromSeconds(1));
 
-            _jobClient.Schedule(() =>  GetCurrentUserNotifications(),   TimeSpan.FromSeconds(7));
+            _jobClient.Schedule(() =>  GetCurrentUserNotifications(),   TimeSpan.FromSeconds(2));
+
+            RecurringJob.AddOrUpdate("chartsjob",     () => GetCurrentUserNotifications(),     Cron.Minutely);
 
             await Clients.All.SendAsync("ReceiveMessage", user,timer.GetType().Name);
         }
@@ -34,6 +36,7 @@ namespace g2v.core.clinetsync.api
         private void DoWork(object? state)
         {
             Console.WriteLine("aaa");
+            GetCurrentUserNotifications();
             //_context.Clients.All.SendAsync("ReceiveMessage", DateTime.Now.Ticks, DateTime.Now.Ticks);
         }
 
@@ -49,7 +52,7 @@ namespace g2v.core.clinetsync.api
             int Max = 20;
             Random randNum = new Random();
             int[] arr = Enumerable
-                .Repeat(0, 5)
+                .Repeat(0, 100)
                 .Select(i => randNum.Next(Min, Max))
                 .ToArray();
             return arr;
