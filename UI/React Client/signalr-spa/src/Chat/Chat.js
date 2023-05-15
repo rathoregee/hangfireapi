@@ -3,11 +3,20 @@ import { HubConnectionBuilder } from '@microsoft/signalr';
 
 import ChatWindow from './ChatWindow/ChatWindow';
 import ChatInput from './ChatInput/ChatInput';
+import DemoChart from './DemoChart';
 
 const Chat = () => {
     const [ chat, setChat ] = useState([]);
     const latestChat = useRef(null);
-
+    const options = {
+        title: {
+          text: 'spectral irradiance'
+        },
+        series: [{
+          data: [1, 2, 3]
+        }]
+      }
+      
     latestChat.current = chat;
 
     useEffect(() => {
@@ -54,7 +63,8 @@ const Chat = () => {
         <div>
             {/* <ChatInput sendMessage={sendMessage} />
             <hr /> */}
-            <ChatWindow chat={chat}/>
+            {/* <ChatWindow chat={chat}/> */}
+            <DemoChart options = {options}/>
         </div>
     );
 };
