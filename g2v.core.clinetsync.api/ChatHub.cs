@@ -22,7 +22,8 @@ namespace g2v.core.clinetsync.api
         }
         public async Task SendMessage(string user, string message)
         {
-            RecurringJob.AddOrUpdate("chartsjob", ()=> GetCurrentUserNotifications(),Cron.Minutely);
+            //schedules a job every 1 seconds
+            RecurringJob.AddOrUpdate("chartsjob", ()=> GetCurrentUserNotifications(), "*/1 * * * * *");
 
             await Clients.All.SendAsync("ReceiveMessage2", user,message);
         }
