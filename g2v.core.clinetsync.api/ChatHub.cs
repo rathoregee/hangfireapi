@@ -14,21 +14,31 @@ namespace g2v.core.clinetsync.api
     {
         private System.Threading.Timer? timer;
         private readonly IHubContext<ChatHub> _context;
-        public ChatHub(IHubContext<ChatHub> hubContext)
+        private readonly IBackgroundJobClient _jobClient;
+        public ChatHub(IHubContext<ChatHub> hubContext, IBackgroundJobClient jobClient)
         {
             _context = hubContext;
+            _jobClient = jobClient;
         }
         public async Task SendMessage(string user, string message)
         {
 
             timer = new System.Threading.Timer(DoWork, null, TimeSpan.FromSeconds(3),
                  TimeSpan.FromSeconds(1));
+
+            _jobClient.Schedule(() =>  GetCurrentUserNotifications(),   TimeSpan.FromSeconds(7));
+
             await Clients.All.SendAsync("ReceiveMessage", user,timer.GetType().Name);
         }
 
         private void DoWork(object? state)
         {
-            
+            Console.WriteLine("aaa");
+            //_context.Clients.All.SendAsync("ReceiveMessage", DateTime.Now.Ticks, DateTime.Now.Ticks);
+        }
+
+        public void GetCurrentUserNotifications()
+        {
             _context.Clients.All.SendAsync("ReceiveMessage", DateTime.Now.Ticks, DateTime.Now.Ticks);
         }
     }
