@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.api", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.common", "g2v.core.clinetsync.common\g2v.core.clinetsync.common.csproj", "{D007CADB-50A2-4568-81AB-385455499681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.dataaccess", "g2v.core.clinetsync.dataaccess\g2v.core.clinetsync.dataaccess.csproj", "{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.dataaccess", "g2v.core.clinetsync.dataaccess\g2v.core.clinetsync.dataaccess.csproj", "{C17B43F5-60A9-4D40-A15B-E629BB9D6CC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.migrations", "g2v.core.clinetsync.migrations\g2v.core.clinetsync.migrations.csproj", "{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.migrations", "g2v.core.clinetsync.migrations\g2v.core.clinetsync.migrations.csproj", "{7AC3ED14-95C4-4190-9269-AFC72ACBC00F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.unittests", "g2v.core.clinetsync.unittests\g2v.core.clinetsync.unittests.csproj", "{7BF0CD75-6D1C-4012-941A-F172EE07B605}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "g2v.core.clinetsync.unittests", "g2v.core.clinetsync.unittests\g2v.core.clinetsync.unittests.csproj", "{7BF0CD75-6D1C-4012-941A-F172EE07B605}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "g2v.core.clinetsync.notifications", "g2v.core.clinetsync.notifications\g2v.core.clinetsync.notifications.csproj", "{DE7437AE-1027-4B07-A8AC-BDBEEBE21B76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7BF0CD75-6D1C-4012-941A-F172EE07B605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF0CD75-6D1C-4012-941A-F172EE07B605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF0CD75-6D1C-4012-941A-F172EE07B605}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE7437AE-1027-4B07-A8AC-BDBEEBE21B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7437AE-1027-4B07-A8AC-BDBEEBE21B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE7437AE-1027-4B07-A8AC-BDBEEBE21B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7437AE-1027-4B07-A8AC-BDBEEBE21B76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

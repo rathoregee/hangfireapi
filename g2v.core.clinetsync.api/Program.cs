@@ -8,6 +8,7 @@ using Hangfire.AspNetCore;
 using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Autofac.Core;
+using g2v.core.clinetsync.notifications;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = Comman.GetConfiguration(args);
@@ -106,6 +107,6 @@ app.Use(async (context, next) =>
 
 // UseCors must be called before MapHub.
 app.UseCors("ClientPermission");
-app.MapHub<ChatHub>("/chatHub");
+app.MapHub<NotificationHub>("/notificationHub");
 
 app.Run();

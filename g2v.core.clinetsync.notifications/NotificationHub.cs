@@ -1,31 +1,23 @@
-﻿using g2v.core.clinetsync.api.Controllers;
-using Hangfire;
-using Microsoft.AspNet.SignalR.Infrastructure;
-using Microsoft.AspNet.SignalR.Messaging;
+﻿using Hangfire;
 using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Net;
-using System.Threading;
-using System.Timers;
-
-namespace g2v.core.clinetsync.api
+namespace g2v.core.clinetsync.notifications
 {
-    public class ChatHub : Hub
+    public class NotificationHub : Hub
     {
 
-        private readonly IHubContext<ChatHub> _context;
+        private readonly IHubContext<NotificationHub> _context;
 
-        public ChatHub(IHubContext<ChatHub> hubContext)
+        public NotificationHub(IHubContext<NotificationHub> hubContext)
         {
             _context = hubContext;
-            
+
         }
         public async Task SendMessage(string user, string message)
         {
             //schedules a job every 1 seconds
-            RecurringJob.AddOrUpdate("chartsjob", ()=> GetCurrentUserNotifications(), "*/1 * * * * *");
+            RecurringJob.AddOrUpdate("chartsjob", () => GetCurrentUserNotifications(), "*/1 * * * * *");
 
-            await Clients.All.SendAsync("ReceiveMessage2", user,message);
+            await Clients.All.SendAsync("ReceiveMessage2", user, message);
         }
         public void GetCurrentUserNotifications()
         {

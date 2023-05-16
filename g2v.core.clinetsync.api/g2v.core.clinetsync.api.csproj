@@ -33,4 +33,8 @@
 	<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\g2v.core.clinetsync.notifications\g2v.core.clinetsync.notifications.csproj" />
+  </ItemGroup>
+
 </Project>
