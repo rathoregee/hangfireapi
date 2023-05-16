@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HubConnectionBuilder } from '@microsoft/signalr';
-
-import ChatWindow from './ChatWindow/ChatWindow';
-import ChatInput from './ChatInput/ChatInput';
 import DemoChart from './DemoChart';
 
 const Chat = () => {
